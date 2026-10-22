@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Al-al-Bayt File CONVERTER</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo">📄 <span>Al-al-Bayt File CONVERTER</span></div>
+      <nav class="nav">
+        <a href="#tools">الأدوات</a>
+        <a href="#about">حول</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Al-al-Bayt File CONVERTER</h1>
+      <p>كل أدوات تحويل الملفات في مكان واحد — مجاني، آمن، ويعمل مباشرة في متصفحك. ملفاتك لا تغادر جهازك أبداً.</p>
+    </div>
+  </section>
+
+  <section id="tools" class="tools container">
+    <div class="tool-card" onclick="openTool('merge')">
+      <div class="tool-icon">🔗</div>
+      <h3>دمج PDF</h3>
+      <p>اجمع عدة ملفات PDF في ملف واحد</p>
+    </div>
+
+    <div class="tool-card" onclick="openTool('split')">
+      <div class="tool-icon">✂️</div>
+      <h3>تقسيم PDF</h3>
+      <p>قسّم ملف PDF إلى عدة ملفات</p>
+    </div>
+
+    <div class="tool-card" onclick="openTool('compress')">
+      <div class="tool-icon">🗜️</div>
+      <h3>ضغط PDF</h3>
+      <p>قلّل حجم ملف PDF</p>
+    </div>
+
+    <div class="tool-card" onclick="openTool('images')">
+      <div class="tool-icon">🖼️</div>
+      <h3>صور إلى PDF</h3>
+      <p>حوّل صورك إلى ملف PDF واحد</p>
+    </div>
+  </section>
+
+  <div id="toolModal" class="modal hidden">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeTool()">✕</button>
+      <h2 id="modalTitle">الأداة</h2>
+
+      <div id="dropZone" class="drop-zone">
+        <p>📁 اسحب ملفاتك هنا أو</p>
+        <label class="btn-primary">
+          اختر الملفات
+          <input type="file" id="fileInput" multiple accept="application/pdf,image/*" hidden>
+        </label>
+      </div>
+
+      <ul id="fileList" class="file-list"></ul>
+
+      <button id="processBtn" class="btn-primary full" disabled>معالجة</button>
+
+      <div id="status" class="status"></div>
+    </div>
+  </div>
+
+  <section id="about" class="container about">
+    <h2>لماذا Al-al-Bayt File CONVERTER؟</h2>
+    <div class="features">
+      <div class="feature">
+        <h4>🔒 خصوصية تامة</h4>
+        <p>كل المعالجة تحدث في متصفحك. لا تُرفع أي ملفات إلى خادم.</p>
+      </div>
+      <div class="feature">
+        <h4>⚡ سريع</h4>
+        <p>لا انتظار للرفع أو التنزيل من الخادم.</p>
+      </div>
+      <div class="feature">
+        <h4>💸 مجاني</h4>
+        <p>بدون حدود أو اشتراكات.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2025 Al-al-Bayt File CONVERTER — صُنع بـ ❤️</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
