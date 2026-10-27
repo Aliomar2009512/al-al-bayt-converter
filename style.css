@@ -62,9 +62,43 @@ body { background: #f8f9fa; color: #333; line-height: 1.6; }
 .pdf-container { width: 100%; max-width: 900px; display: flex; flex-direction: column; align-items: center; }
 .pdf-page-wrapper { margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); background: #fff; position: relative; }
 .pdf-page-wrapper canvas { display: block; }
-.textLayer { position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; opacity: 0.2; line-height: 1; }
-.textLayer > span { color: transparent; position: absolute; white-space: pre; cursor: text; transform-origin: 0% 0%; }
-.textLayer ::selection { background: rgba(0, 100, 255, 0.3); }
+
+/* تحسينات طبقة النصوص والتحديد */
+.textLayer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  opacity: 1; /* جعلناها 1 لضمان عمل التحديد */
+  line-height: 1;
+  text-align: initial;
+  text-size-adjust: none;
+  forced-color-adjust: none;
+  transform-origin: 0 0;
+}
+.textLayer span, .textLayer br {
+  color: transparent;
+  position: absolute;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0% 0%;
+}
+.textLayer ::selection {
+  background: rgba(0, 100, 255, 0.4) !important; /* اللون الأزرق الشفاف */
+}
+.textLayer ::-moz-selection {
+  background: rgba(0, 100, 255, 0.4) !important;
+}
+.textLayer > div {
+  color: transparent;
+  position: absolute;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0% 0%;
+}
+
 .placeholder-text { color: #eee; font-size: 1.2rem; margin-top: 50px; }
 
 /* Translation Tooltip */
