@@ -3,14 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Al-al-Bayt File CONVERTER | أدوات PDF مجانية</title>
+  <title>Al-al-Bayt File CONVERTER</title>
+  
+  <!-- الخطوط والأيقونات -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
   
-  <!-- مكتبات المعالجة -->
+  <!-- ربط ملف التصميم -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- مكتبات PDF -->
   <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-  <!-- مكتبة عرض PDF.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 <body>
@@ -37,7 +40,7 @@
     </section>
 
     <section id="tools" class="tools-section container">
-      <h2 class="section-title">تنظيم ملف PDF</h2>
+      <h2 class="section-title">أدوات PDF</h2>
       <div class="grid">
         <div class="tool-card red" onclick="openTool('merge')">
           <i class="fa-solid fa-layer-group icon"></i>
@@ -59,17 +62,16 @@
           <h3>صور إلى PDF</h3>
           <p>حوّل صورك إلى ملف PDF</p>
         </div>
-        <!-- الأداة الجديدة -->
         <div class="tool-card purple" onclick="openViewer()">
           <i class="fa-solid fa-book-open icon"></i>
           <h3>قراءة وترجمة PDF</h3>
-          <p>افتح الملف، علم النص، وترجمه فوراً</p>
+          <p>افتح الملف، علم النص، وترجمه</p>
         </div>
       </div>
     </section>
   </div>
 
-  <!-- قسم قارئ وترجمة PDF (مخفي افتراضياً) -->
+  <!-- شاشة قراءة وترجمة PDF -->
   <div id="viewerPage" class="hidden">
     <div class="viewer-header">
       <button class="btn-back" onclick="showHome()"><i class="fa-solid fa-arrow-right"></i> عودة</button>
@@ -84,7 +86,6 @@
       </div>
     </div>
     
-    <!-- نافذة الترجمة المنبثقة -->
     <div id="translationTooltip" class="translation-tooltip hidden">
       <div class="tooltip-header">
         <span>الترجمة:</span>
@@ -94,7 +95,7 @@
     </div>
   </div>
 
-  <!-- النافذة المنبثقة للأدوات الأخرى (دمج، تقسيم...) -->
+  <!-- نافذة الأدوات -->
   <div id="toolModal" class="modal hidden">
     <div class="modal-content">
       <button class="close-btn" onclick="closeTool()"><i class="fa-solid fa-xmark"></i></button>
@@ -109,6 +110,10 @@
       <div id="status" class="status"></div>
     </div>
   </div>
+
+  <footer class="footer">
+    <p>© 2025 Al-al-Bayt File CONVERTER — جميع الحقوق محفوظة.</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
