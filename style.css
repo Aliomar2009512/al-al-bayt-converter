@@ -1,354 +1,131 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Cairo', sans-serif;
+/* ... (احتفظ بكل الكود السابق كما هو، وأضف الكود التالي في نهايته) ... */
+
+/* ===== ألوان إضافية ===== */
+.tool-card.purple { border-color: #8b5cf6; }
+.tool-card.purple .icon { color: #8b5cf6; }
+
+/* ===== شاشة قارئ PDF ===== */
+.hidden { display: none !important; }
+
+#viewerPage {
+  background: #525659; /* لون خلفية قارئ PDF التقليدي */
+  min-height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
 }
 
-body {
-  background: #f8f9fa;
-  color: #333;
-  line-height: 1.6;
-}
-
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* ===== Header ===== */
-.header {
-  background: #fff;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.header-inner {
+.viewer-header {
+  background: #323639;
+  color: #fff;
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 70px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
-.logo {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #333;
-}
+.viewer-header h2 { font-size: 1.2rem; font-weight: 600; }
 
-.logo span {
-  color: #e5322d;
-}
-
-.logo i {
-  color: #e5322d;
-}
-
-.nav a {
-  margin-inline-start: 25px;
-  color: #555;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: color 0.2s;
-}
-
-.nav a:hover {
-  color: #e5322d;
-}
-
-.btn-login {
-  background: #e5322d;
-  color: #fff !important;
-  padding: 8px 20px;
+.btn-back {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 8px 15px;
   border-radius: 5px;
-}
-
-.btn-login:hover {
-  background: #c42a26;
-}
-
-.mobile-menu-btn {
-  display: none;
-  font-size: 1.5rem;
   cursor: pointer;
-}
-
-/* ===== Hero ===== */
-.hero {
-  background: #fff;
-  text-align: center;
-  padding: 60px 20px;
-  border-bottom: 1px solid #eee;
-}
-
-.hero h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 15px;
-}
-
-.hero p {
-  font-size: 1.2rem;
-  color: #666;
-}
-
-/* ===== Tools Section ===== */
-.tools-section {
-  padding: 50px 20px;
-}
-
-.section-title {
-  font-size: 1.5rem;
-  margin-bottom: 25px;
-  color: #333;
-  font-weight: 700;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
-}
-
-.tool-card {
-  background: #fff;
-  border-radius: 10px;
-  padding: 30px 20px;
-  text-align: center;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  border-top: 4px solid transparent;
-}
-
-.tool-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-/* ألوان الأزرار مثل iLovePDF */
-.tool-card.red { border-color: #e5322d; }
-.tool-card.red .icon { color: #e5322d; }
-
-.tool-card.yellow { border-color: #f59e0b; }
-.tool-card.yellow .icon { color: #f59e0b; }
-
-.tool-card.green { border-color: #10b981; }
-.tool-card.green .icon { color: #10b981; }
-
-.tool-card.blue { border-color: #3b82f6; }
-.tool-card.blue .icon { color: #3b82f6; }
-
-.tool-card .icon {
-  font-size: 2.5rem;
-  margin-bottom: 15px;
-}
-
-.tool-card h3 {
-  font-size: 1.2rem;
-  color: #333;
-  margin-bottom: 8px;
-}
-
-.tool-card p {
-  font-size: 0.9rem;
-  color: #777;
-}
-
-/* ===== Features Section ===== */
-.features-section {
-  background: #fff;
-  padding: 60px 20px;
-  text-align: center;
-  border-top: 1px solid #eee;
-}
-
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
-}
-
-.feature i {
-  font-size: 2.5rem;
-  color: #e5322d;
-  margin-bottom: 15px;
-}
-
-.feature h4 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.feature p {
-  color: #666;
-  font-size: 0.95rem;
-}
-
-/* ===== Modal ===== */
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  padding: 20px;
-  backdrop-filter: blur(3px);
-}
-
-.modal.hidden { display: none; }
-
-.modal-content {
-  background: #fff;
-  border-radius: 12px;
-  padding: 30px;
-  max-width: 550px;
-  width: 100%;
-  position: relative;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-}
-
-.close-btn {
-  position: absolute;
-  top: 15px;
-  inset-inline-end: 15px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #999;
-  transition: color 0.2s;
-}
-
-.close-btn:hover { color: #e5322d; }
-
-.modal-content h2 {
-  color: #333;
-  font-weight: 700;
-}
-
-/* Drop Zone */
-.drop-zone {
-  border: 2px dashed #cbd5e1;
-  border-radius: 10px;
-  padding: 40px 20px;
-  text-align: center;
-  margin-bottom: 20px;
-  background: #f8fafc;
+  font-family: 'Cairo', sans-serif;
   transition: all 0.2s;
 }
+.btn-back:hover { background: #fff; color: #323639; }
 
-.drop-zone.dragover {
-  border-color: #e5322d;
-  background: #fef2f2;
+.viewer-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
 }
 
-.drop-zone p {
-  margin-bottom: 15px;
-  color: #666;
-  font-weight: 600;
-}
-
-/* Buttons */
-.btn-primary {
-  display: inline-block;
-  background: #e5322d;
-  color: #fff;
-  padding: 12px 30px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 1rem;
-  font-family: 'Cairo', sans-serif;
-  transition: background 0.2s;
-}
-
-.btn-primary:hover:not(:disabled) { background: #c42a26; }
-
-.btn-primary:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-}
-
-.btn-primary.full {
+.pdf-container {
   width: 100%;
-  margin-top: 10px;
-  padding: 14px;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* تنسيق الصفحات التي تولدها PDF.js */
+.pdf-page-wrapper {
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  background: #fff;
+  position: relative;
+}
+
+/* مهم جداً: تحديد النص */
+.pdf-page-wrapper canvas { display: block; }
+.textLayer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  opacity: 0.2; /* اجعلها 0.2 لرؤية التحديد بوضوح */
+  line-height: 1;
+}
+.textLayer > span {
+  color: transparent;
+  position: absolute;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0% 0%;
+}
+.textLayer ::selection { background: rgba(0, 100, 255, 0.3); }
+
+.placeholder-text {
+  color: #eee;
+  font-size: 1.2rem;
+  margin-top: 50px;
+}
+
+/* ===== نافذة الترجمة المنبثقة (Tooltip) ===== */
+.translation-tooltip {
+  position: fixed;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  width: 300px;
+  z-index: 2000;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  /* التمركز سيتم عبر JavaScript */
+}
+
+.tooltip-header {
+  background: #f1f5f9;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+}
+
+.tooltip-header button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
   font-size: 1.1rem;
 }
 
-/* File List */
-.file-list {
-  list-style: none;
-  margin-bottom: 10px;
-}
-
-.file-list li {
-  background: #f1f5f9;
-  padding: 12px 15px;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #333;
-}
-
-.file-list li button {
-  background: none;
-  border: none;
-  color: #ef4444;
-  cursor: pointer;
-  font-size: 1.2rem;
-  transition: color 0.2s;
-}
-
-.file-list li button:hover {
-  color: #b91c1c;
-}
-
-/* Status */
-.status {
-  margin-top: 15px;
-  padding: 12px;
-  border-radius: 8px;
-  text-align: center;
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-
-.status.success { background: #dcfce7; color: #166534; }
-.status.error { background: #fee2e2; color: #991b1b; }
-.status.info { background: #dbeafe; color: #1e40af; }
-
-/* ===== Footer ===== */
-.footer {
-  background: #1e293b;
-  color: #94a3b8;
-  text-align: center;
-  padding: 30px 20px;
-  margin-top: 40px;
-  font-size: 0.95rem;
-}
-
-/* ===== Responsive ===== */
-@media (max-width: 768px) {
-  .nav { display: none; }
-  .mobile-menu-btn { display: block; }
-  .hero h1 { font-size: 1.8rem; }
-  .hero p { font-size: 1rem; }
+.tooltip-body {
+  padding: 15px;
+  font-size: 1rem;
+  color: #1e293b;
+  line-height: 1.6;
+  max-height: 200px;
+  overflow-y: auto;
 }
