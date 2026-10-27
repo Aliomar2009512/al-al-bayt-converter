@@ -4,122 +4,111 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Al-al-Bayt File CONVERTER | أدوات PDF مجانية</title>
-  <!-- استيراد خط عربي احترافي يشبه iLovePDF -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- استيراد أيقونات -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  
+  <!-- مكتبات المعالجة -->
   <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <!-- مكتبة عرض PDF.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 <body>
 
-  <!-- Header -->
   <header class="header">
     <div class="container header-inner">
-      <div class="logo">
+      <div class="logo" onclick="showHome()">
         <i class="fa-solid fa-file-pdf"></i> Al-al-Bayt <span>PDF</span>
       </div>
       <nav class="nav">
-        <a href="#">دمج PDF</a>
-        <a href="#">تقسيم PDF</a>
-        <a href="#">ضغط PDF</a>
-        <a href="#">تحويل PDF</a>
+        <a href="#" onclick="showHome()">الرئيسية</a>
         <a href="#" class="btn-login">تسجيل الدخول</a>
       </nav>
-      <div class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></div>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <h1>أدوات عبر الانترنت لعشاق PDF</h1>
-      <p>كل أدوات تحويل وضغط ملفات PDF في مكان واحد. مجاني، سريع، وآمن 100%.</p>
-    </div>
-  </section>
+  <!-- الصفحة الرئيسية -->
+  <div id="homePage">
+    <section class="hero">
+      <div class="container">
+        <h1>أدوات عبر الانترنت لعشاق PDF</h1>
+        <p>كل أدوات تحويل وضغط ملفات PDF في مكان واحد. مجاني، سريع، وآمن 100%.</p>
+      </div>
+    </section>
 
-  <!-- Tools Grid (مشابه لـ iLovePDF) -->
-  <section id="tools" class="tools-section container">
+    <section id="tools" class="tools-section container">
+      <h2 class="section-title">تنظيم ملف PDF</h2>
+      <div class="grid">
+        <div class="tool-card red" onclick="openTool('merge')">
+          <i class="fa-solid fa-layer-group icon"></i>
+          <h3>دمج PDF</h3>
+          <p>اجمع عدة ملفات في ملف واحد</p>
+        </div>
+        <div class="tool-card yellow" onclick="openTool('split')">
+          <i class="fa-solid fa-scissors icon"></i>
+          <h3>تقسيم PDF</h3>
+          <p>قسّم ملف PDF إلى عدة ملفات</p>
+        </div>
+        <div class="tool-card green" onclick="openTool('compress')">
+          <i class="fa-solid fa-compress icon"></i>
+          <h3>ضغط PDF</h3>
+          <p>قلّل حجم ملف PDF</p>
+        </div>
+        <div class="tool-card blue" onclick="openTool('images')">
+          <i class="fa-solid fa-image icon"></i>
+          <h3>صور إلى PDF</h3>
+          <p>حوّل صورك إلى ملف PDF</p>
+        </div>
+        <!-- الأداة الجديدة -->
+        <div class="tool-card purple" onclick="openViewer()">
+          <i class="fa-solid fa-book-open icon"></i>
+          <h3>قراءة وترجمة PDF</h3>
+          <p>افتح الملف، علم النص، وترجمه فوراً</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- قسم قارئ وترجمة PDF (مخفي افتراضياً) -->
+  <div id="viewerPage" class="hidden">
+    <div class="viewer-header">
+      <button class="btn-back" onclick="showHome()"><i class="fa-solid fa-arrow-right"></i> عودة</button>
+      <h2>قارئ وترجمة PDF</h2>
+      <input type="file" id="pdfFileInput" accept="application/pdf" hidden>
+      <button class="btn-primary" onclick="document.getElementById('pdfFileInput').click()"><i class="fa-solid fa-upload"></i> اختر ملف PDF</button>
+    </div>
     
-    <!-- مجموعة أدوات التنظيم -->
-    <h2 class="section-title">تنظيم ملف PDF</h2>
-    <div class="grid">
-      <div class="tool-card red" onclick="openTool('merge')">
-        <i class="fa-solid fa-layer-group icon"></i>
-        <h3>دمج PDF</h3>
-        <p>اجمع عدة ملفات PDF في ملف واحد</p>
-      </div>
-      <div class="tool-card yellow" onclick="openTool('split')">
-        <i class="fa-solid fa-scissors icon"></i>
-        <h3>تقسيم PDF</h3>
-        <p>قسّم ملف PDF إلى عدة ملفات</p>
-      </div>
-      <div class="tool-card green" onclick="openTool('compress')">
-        <i class="fa-solid fa-compress icon"></i>
-        <h3>ضغط PDF</h3>
-        <p>قلّل حجم ملف PDF مع الحفاظ على الجودة</p>
-      </div>
-      <div class="tool-card blue" onclick="openTool('images')">
-        <i class="fa-solid fa-image icon"></i>
-        <h3>صور إلى PDF</h3>
-        <p>حوّل صور JPG و PNG إلى PDF</p>
+    <div class="viewer-container">
+      <div id="pdfContainer" class="pdf-container">
+        <p class="placeholder-text">الرجاء اختيار ملف PDF لعرضه هنا...</p>
       </div>
     </div>
-  </section>
-
-  <!-- Features Section -->
-  <section id="about" class="features-section">
-    <div class="container">
-      <h2 class="section-title">برنامج تعديل ملفات PDF يثق به الملايين</h2>
-      <div class="features-grid">
-        <div class="feature">
-          <i class="fa-solid fa-shield-halved"></i>
-          <h4>آمن وخصوصية تامة</h4>
-          <p>ملفاتك تعالج في متصفحك ولا ترفع لأي خادم.</p>
-        </div>
-        <div class="feature">
-          <i class="fa-solid fa-bolt"></i>
-          <h4>سريع جداً</h4>
-          <p>لا انتظار للرفع والتنزيل، المعالجة فورية.</p>
-        </div>
-        <div class="feature">
-          <i class="fa-solid fa-infinity"></i>
-          <h4>مجاني بالكامل</h4>
-          <p>بدون حدود وبدون اشتراكات خفية.</p>
-        </div>
+    
+    <!-- نافذة الترجمة المنبثقة -->
+    <div id="translationTooltip" class="translation-tooltip hidden">
+      <div class="tooltip-header">
+        <span>الترجمة:</span>
+        <button onclick="closeTooltip()"><i class="fa-solid fa-xmark"></i></button>
       </div>
+      <div class="tooltip-body" id="translationText">جاري الترجمة...</div>
     </div>
-  </section>
+  </div>
 
-  <!-- Tool Modal (النافذة المنبثقة) -->
+  <!-- النافذة المنبثقة للأدوات الأخرى (دمج، تقسيم...) -->
   <div id="toolModal" class="modal hidden">
     <div class="modal-content">
       <button class="close-btn" onclick="closeTool()"><i class="fa-solid fa-xmark"></i></button>
       <h2 id="modalTitle" style="text-align: center; margin-bottom: 20px;">الأداة</h2>
-
       <div id="dropZone" class="drop-zone">
         <i class="fa-solid fa-cloud-arrow-up" style="font-size: 3rem; color: #e5322d; margin-bottom: 15px;"></i>
         <p>اسحب ملفاتك هنا أو</p>
-        <label class="btn-primary">
-          اختر الملفات
-          <input type="file" id="fileInput" multiple accept="application/pdf,image/*" hidden>
-        </label>
+        <label class="btn-primary">اختر الملفات<input type="file" id="fileInput" multiple hidden></label>
       </div>
-
       <ul id="fileList" class="file-list"></ul>
-
-      <button id="processBtn" class="btn-primary full" disabled>معالجة الملفات</button>
-
+      <button id="processBtn" class="btn-primary full" disabled>معالجة</button>
       <div id="status" class="status"></div>
     </div>
   </div>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <p>© 2025 Al-al-Bayt File CONVERTER — جميع الحقوق محفوظة.</p>
-    </div>
-  </footer>
 
   <script src="script.js"></script>
 </body>
