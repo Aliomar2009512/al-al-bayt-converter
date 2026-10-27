@@ -49,20 +49,29 @@ pdfFileInput.addEventListener('change', async (e) => {
         
         const textLayerDiv = document.createElement('div');
         textLayerDiv.className = 'textLayer';
+        // ضبط أبعاد طبقة النص لتطابق الصورة
+        textLayerDiv.style.width = viewport.width + 'px';
+        textLayerDiv.style.height = viewport.height + 'px';
+        
         pageWrapper.appendChild(textLayerDiv);
         pdfContainer.appendChild(pageWrapper);
 
         await page.render({ canvasContext: context, viewport: viewport }).promise;
 
         const textContent = await page.getTextContent();
-        pdfjsLib.renderTextLayer({
+        
+        // إعدادات دقيقة لطبقة النصوص لضمان عدم تلاصق الحروف
+        const textLayerTask = pdfjsLib.renderTextLayer({
           textContentSource: textContent,
           container: textLayerDiv,
           viewport: viewport,
-          textDivs: []
+          textDivs: [],
+          enhanceTextSelection: true
         });
+        await textLayerTask.promise;
       }
     } catch (error) {
+      console.error(error);
       pdfContainer.innerHTML = '<p class="placeholder-text" style="color:#ff6b6b;">حدث خطأ في قراءة الملف.</p>';
     }
   };
